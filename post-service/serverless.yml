@@ -1,0 +1,30 @@
+service: graphql-lambda
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-2
+  lambdaHashingVersion: 20201221
+  apiGateway:
+    shouldStartNameWithService: true
+    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
+
+unresolvedVariablesNotificationMode: error
+
+functions:
+  graphql:
+    handler: handler.server
+    events:
+    - http:
+        path: /
+        method: post
+        cors: true
+        
+  playground:
+    handler: handler.playground
+    events:
+    - http:
+        path: /
+        method: get
+        cors: true

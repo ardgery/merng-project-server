@@ -1,0 +1,16 @@
+  type ListPokemonType {
+    name: String
+  }
+  type PokemonType {
+    id: ID!
+    name: String
+    moves: [MovesAndTypes],
+    types: [MovesAndTypes]
+  }
+  type MovesAndTypes {
+    name: String
+  }
+  type Query {
+    listpokemonQuery: [ListPokemonType],
+    pokemonQuery(id: ID!): PokemonType
+  }
